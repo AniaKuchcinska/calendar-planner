@@ -4,19 +4,19 @@ Monthly calendar application built with React and TypeScript.
 
 ## Features
 
-* Navigate between months
-* Create events by clicking a day
-* Display events
-* Delete events
+- Navigate between months
+- Create events by clicking a day
+- Display events
+- Delete events
 
 ## Tech stack
 
-* React
-* TypeScript
-* Vite
-* date-fns
-* Vitest
-* React Testing Library
+- React
+- TypeScript
+- Vite
+- date-fns
+- Vitest
+- React Testing Library
 
 ## Getting started
 
