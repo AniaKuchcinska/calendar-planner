@@ -1,5 +1,7 @@
+import Calendar from './components/Calendar/Calendar.tsx';
+
 const App = () => {
-  return <h1>Calendar Planner</h1>;
+  return <Calendar />;
 };
 
 export default App;

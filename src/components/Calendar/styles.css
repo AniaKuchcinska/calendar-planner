@@ -1,0 +1,24 @@
+.calendar-grid-layout {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-day {
+    min-height: 5rem;
+    padding: 0.5rem;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 2.5rem;
+}
+
+.calendar-title {
+    text-transform: capitalize;
+    text-align: center;
+    min-width: 10rem;
+    margin: 0;
+}
