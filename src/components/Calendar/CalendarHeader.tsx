@@ -1,9 +1,9 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
-import type { CalendarDateProps } from './types.ts';
 
-type CalendarHeaderProps = CalendarDateProps & {
+type CalendarHeaderProps = {
+  currentDate: Date;
   onPrevMonth: () => void;
   onNextMonth: () => void;
 };
@@ -15,13 +15,23 @@ const CalendarHeader = ({
 }: CalendarHeaderProps) => {
   return (
     <header className="calendar-header">
-      <button type="button" aria-label="Mois précédent" onClick={onPrevMonth}>
+      <button
+        type="button"
+        className="calendar-navigation-button"
+        aria-label="Mois précédent"
+        onClick={onPrevMonth}
+      >
         <ChevronLeft />
       </button>
       <h2 className="calendar-title">
         {format(currentDate, 'MMMM yyyy', { locale: fr })}
       </h2>
-      <button type="button" aria-label="Mois suivant" onClick={onNextMonth}>
+      <button
+        type="button"
+        className="calendar-navigation-button"
+        aria-label="Mois suivant"
+        onClick={onNextMonth}
+      >
         <ChevronRight />
       </button>
     </header>
