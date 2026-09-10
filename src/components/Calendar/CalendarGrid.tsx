@@ -1,9 +1,21 @@
 import { eachDayOfInterval, endOfMonth, startOfMonth, getDay } from 'date-fns';
 import CalendarDay from './CalendarDay.tsx';
 import './styles.css';
-import type { CalendarDateProps } from './types.ts';
+import type { CalendarEvent } from './types/calendar.ts';
 
-const CalendarGrid = ({ currentDate }: CalendarDateProps) => {
+type CalendarGridProps = {
+  currentDate: Date;
+  events: CalendarEvent[];
+  onDayClick: (date: Date) => void;
+  onEventClick: (event: CalendarEvent) => void;
+};
+
+const CalendarGrid = ({
+  currentDate,
+  events,
+  onDayClick,
+  onEventClick,
+}: CalendarGridProps) => {
   const firstDayOfMonth = startOfMonth(currentDate);
   const days = eachDayOfInterval({
     start: startOfMonth(currentDate),
@@ -18,7 +30,13 @@ const CalendarGrid = ({ currentDate }: CalendarDateProps) => {
         <div key={`empty-${index}`}></div>
       ))}
       {days.map((day) => (
-        <CalendarDay key={day.toISOString()} date={day} />
+        <CalendarDay
+          key={day.toISOString()}
+          date={day}
+          onClick={onDayClick}
+          onEventClick={onEventClick}
+          events={events}
+        />
       ))}
     </div>
   );
