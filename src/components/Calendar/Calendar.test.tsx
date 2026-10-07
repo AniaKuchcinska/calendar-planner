@@ -106,7 +106,7 @@ describe('Calendar', () => {
       }),
     );
     expect(
-      screen.getByRole('form', { name: 'Modifier un événement' }),
+      screen.getByRole('form', { name: 'Supprimer un événement' }),
     ).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Supprimer' }));
     expect(
