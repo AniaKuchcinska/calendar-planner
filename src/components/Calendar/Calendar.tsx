@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { addMonths, format, subMonths } from 'date-fns';
 import type { CalendarEvent } from './types/calendar.ts';
 import EventForm from './EventForm.tsx';
+import usePersistentEvents from './hooks/usePersistentEvents.ts';
 
 type CalendarProps = {
   initialDate?: Date;
@@ -12,11 +13,11 @@ type CalendarProps = {
 
 const Calendar = ({ initialDate = new Date() }: CalendarProps) => {
   const [currentDate, setCurrentDate] = useState(initialDate);
-  const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(
     null,
   );
+  const { events, setEvents } = usePersistentEvents();
 
   const handlePrevMonth = () => {
     setCurrentDate(subMonths(currentDate, 1));

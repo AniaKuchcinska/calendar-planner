@@ -2,6 +2,11 @@ import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Calendar from './Calendar';
 import userEvent from '@testing-library/user-event';
+import { beforeEach } from 'vitest';
+
+beforeEach(() => {
+  localStorage.clear();
+});
 
 describe('Calendar', () => {
   it('displays the current month and year', () => {
