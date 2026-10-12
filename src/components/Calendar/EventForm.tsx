@@ -1,4 +1,4 @@
-import type { CalendarEvent } from './types/calendar.ts';
+import type { CalendarEvent } from '../../types/calendar.ts';
 import { useForm } from 'react-hook-form';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';

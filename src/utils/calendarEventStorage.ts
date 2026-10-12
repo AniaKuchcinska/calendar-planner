@@ -1,5 +1,5 @@
-import type { CalendarEvent } from '../types/calendar';
-import { isCalendarEventArray } from './calendarEventValidator';
+import type { CalendarEvent } from '../types/calendar.ts';
+import { isCalendarEventArray } from './calendarEventValidator.ts';
 
 const STORAGE_KEY = 'calendar-events';
 

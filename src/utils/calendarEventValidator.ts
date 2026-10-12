@@ -1,4 +1,4 @@
-import type { CalendarEvent } from '../types/calendar';
+import type { CalendarEvent } from '../types/calendar.ts';
 
 export const isCalendarEvent = (value: unknown): value is CalendarEvent => {
   if (typeof value !== 'object' || value === null) {

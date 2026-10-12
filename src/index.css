@@ -23,6 +23,7 @@ body {
 :root {
   --text: #4b5563;
   --text-h: #17201f;
+  --text-on-accent: #ffffff;
 
   --bg: #ffffff;
   --surface: #f5f8f7;
