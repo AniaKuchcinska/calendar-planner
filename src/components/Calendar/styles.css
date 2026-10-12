@@ -148,6 +148,16 @@
   outline-offset: 1px;
 }
 
+.calendar-public-holiday {
+  padding: 4px 6px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  background-color: var(--accent);
+  color: var(--text-on-accent);
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+}
+
 .event-modal {
   position: fixed;
   inset: 0;

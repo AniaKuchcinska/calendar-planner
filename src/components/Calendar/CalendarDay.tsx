@@ -1,12 +1,14 @@
 import './styles.css';
-import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
-import type { CalendarEvent } from './types/calendar.ts';
+import type { CalendarEvent } from '../../types/calendar.ts';
 import { CirclePlus } from 'lucide-react';
+import type { PublicHoliday } from '../../types/publicHoliday.ts';
+import { format } from 'date-fns';
 
 type CalendarDayProps = {
   date: Date;
   events: CalendarEvent[];
+  publicHolidays: PublicHoliday[];
   onClick: (date: Date) => void;
   onEventClick: (event: CalendarEvent) => void;
 };
@@ -14,6 +16,7 @@ type CalendarDayProps = {
 const CalendarDay = ({
   date,
   events,
+  publicHolidays,
   onClick,
   onEventClick,
 }: CalendarDayProps) => {
@@ -21,8 +24,11 @@ const CalendarDay = ({
     (event) => event.date === format(date, 'yyyy-MM-dd'),
   );
 
-  const formattedDate = format(date, 'd MMMM yyyy', { locale: fr });
+  const dayHolidays = publicHolidays.filter(
+    (publicHoliday) => publicHoliday.date === format(date, 'yyyy-MM-dd'),
+  );
 
+  const formattedDate = format(date, 'd MMMM yyyy', { locale: fr });
   return (
     <div className="calendar-day">
       <button
@@ -36,6 +42,12 @@ const CalendarDay = ({
       </button>
 
       <div className="calendar-day-events">
+        {dayHolidays.map(({ date, name }) => (
+          <div key={date} className="calendar-public-holiday">
+            {name}
+          </div>
+        ))}
+
         {dayEvents.map((event) => (
           <button
             type="button"

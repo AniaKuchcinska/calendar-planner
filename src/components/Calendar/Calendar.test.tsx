@@ -1,12 +1,22 @@
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Calendar from './Calendar';
 import userEvent from '@testing-library/user-event';
-import { beforeEach } from 'vitest';
 
 beforeEach(() => {
   localStorage.clear();
 });
+
+vi.mock('../../hooks/usePublicHolidays.ts', () => ({
+  useHolidays: () => ({
+    data: [
+      { date: '2026-11-01', name: 'Toussaint' },
+      { date: '2026-11-11', name: 'Armistice de 1918' },
+    ],
+    isLoading: false,
+    error: null,
+  }),
+}));
 
 describe('Calendar', () => {
   it('displays the current month and year', () => {
@@ -119,5 +129,12 @@ describe('Calendar', () => {
         name: "Modifier l'événement Réunion équipe",
       }),
     ).not.toBeInTheDocument();
+  });
+
+  it('displays public holidays in the correct month', () => {
+    render(<Calendar initialDate={new Date(2026, 10, 9)} />);
+
+    expect(screen.getByText('Toussaint')).toBeInTheDocument();
+    expect(screen.getByText('Armistice de 1918')).toBeInTheDocument();
   });
 });

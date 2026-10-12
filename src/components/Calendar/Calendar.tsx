@@ -3,9 +3,10 @@ import WeekDays from './WeekDays.tsx';
 import CalendarGrid from './CalendarGrid.tsx';
 import { useState } from 'react';
 import { addMonths, format, subMonths } from 'date-fns';
-import type { CalendarEvent } from './types/calendar.ts';
+import type { CalendarEvent } from '../../types/calendar.ts';
 import EventForm from './EventForm.tsx';
-import usePersistentEvents from './hooks/usePersistentEvents.ts';
+import usePersistentEvents from '../../hooks/usePersistentEvents.ts';
+import { useHolidays } from '../../hooks/usePublicHolidays.ts';
 
 type CalendarProps = {
   initialDate?: Date;
@@ -18,6 +19,13 @@ const Calendar = ({ initialDate = new Date() }: CalendarProps) => {
     null,
   );
   const { events, setEvents } = usePersistentEvents();
+
+  const displayedYear = currentDate.getFullYear();
+  const {
+    data: publicHolidays = [],
+    isLoading,
+    error,
+  } = useHolidays('FR', displayedYear);
 
   const handlePrevMonth = () => {
     setCurrentDate(subMonths(currentDate, 1));
@@ -64,11 +72,14 @@ const Calendar = ({ initialDate = new Date() }: CalendarProps) => {
         onNextMonth={handleNextMonth}
       />
       <WeekDays />
+      {isLoading && <p>Chargement des jours fériés...</p>}
+      {error && <p>Impossible de charger les jours fériés.</p>}
       <CalendarGrid
         currentDate={currentDate}
         onDayClick={handleDayClick}
         onEventClick={handleEventClick}
         events={events}
+        publicHolidays={publicHolidays}
       />
 
       {selectedDate && (

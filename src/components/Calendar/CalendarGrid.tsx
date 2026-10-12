@@ -1,11 +1,13 @@
 import { eachDayOfInterval, endOfMonth, startOfMonth, getDay } from 'date-fns';
 import CalendarDay from './CalendarDay.tsx';
 import './styles.css';
-import type { CalendarEvent } from './types/calendar.ts';
+import type { CalendarEvent } from '../../types/calendar.ts';
+import type { PublicHoliday } from '../../types/publicHoliday.ts';
 
 type CalendarGridProps = {
   currentDate: Date;
   events: CalendarEvent[];
+  publicHolidays: PublicHoliday[];
   onDayClick: (date: Date) => void;
   onEventClick: (event: CalendarEvent) => void;
 };
@@ -13,6 +15,7 @@ type CalendarGridProps = {
 const CalendarGrid = ({
   currentDate,
   events,
+  publicHolidays,
   onDayClick,
   onEventClick,
 }: CalendarGridProps) => {
@@ -36,6 +39,7 @@ const CalendarGrid = ({
           onClick={onDayClick}
           onEventClick={onEventClick}
           events={events}
+          publicHolidays={publicHolidays}
         />
       ))}
     </div>
