@@ -63,14 +63,26 @@ const EventForm = ({
         )}
 
         <div className="event-form-actions">
-          <button type="button" onClick={onCancel}>
+          <button
+            className="event-cancel-button"
+            type="button"
+            onClick={onCancel}
+          >
             Annuler
           </button>
 
-          {!event && <button type="submit">Ajouter</button>}
+          {!event && (
+            <button className="event-primary-button" type="submit">
+              Ajouter
+            </button>
+          )}
 
           {event && (
-            <button type="button" onClick={() => onDelete(event.id)}>
+            <button
+              className="event-primary-button"
+              type="button"
+              onClick={() => onDelete(event.id)}
+            >
               Supprimer
             </button>
           )}

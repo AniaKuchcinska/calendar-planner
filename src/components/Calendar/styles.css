@@ -214,7 +214,7 @@
 .event-form button {
   min-height: 2.75rem;
   padding: 0.6rem 1rem;
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: 0.5rem;
   background: var(--bg);
   color: var(--text-h);
@@ -222,10 +222,19 @@
   cursor: pointer;
 }
 
-.event-form button[type='submit'] {
+.event-form button.event-primary-button {
   border-color: var(--accent);
   background: var(--accent);
   color: white;
+}
+
+.event-form button.event-cancel-button {
+  border-color: var(--accent);
+}
+
+.event-form button.event-cancel-button:hover {
+  background: var(--accent-bg);
+  opacity: 1;
 }
 
 .event-form button:hover {
